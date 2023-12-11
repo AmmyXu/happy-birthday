@@ -3,28 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <!-- import CSS -->
-  <link href="https://cdn.bootcdn.net/ajax/libs/ant-design-vue/3.0.0-beta.12/antd.css" rel="stylesheet">
+  <!-- <link href="https://cdn.bootcdn.net/ajax/libs/ant-design-vue/3.0.0-beta.12/antd.css" rel="stylesheet"> -->
 </head>
 <style>
 	*{
 		margin: 0;
 		padding: 0;
 	}
+    .video {
+        width: 300px;
+        height: 100px;
+    }
 </style>
 <body>
   <div id="app">
-    <a-button type="primary">Primary1</a-button>
+    <video controls class="video">
+        <source src="https://sns-video-bd.xhscdn.com/stream/110/259/01e538c6aba9ac6f010370038b65ca5ba6_259.mp4" type="video/mp4" />
+        <p>
+          Your browser doesn't support HTML5 video. Here is a
+          <a href="myVideo.mp4">link to the video</a> instead.
+        </p>
+      </video>
+    <!-- <a-button type="primary">Primary1</a-button>
     <a-button>Default</a-button>
     <a-button type="dashed">Dashed</a-button>
     <a-button type="danger">Danger</a-button>
     <a-button type="link">Link</a-button>
-    <a-pagination v-model="current" :total="50" show-less-items />
+    <a-pagination v-model="current" :total="50" show-less-items /> -->
   </div>
 </body>
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/locale/zh-cn.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/ant-design-vue@1.7.8/dist/antd.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/locale/zh-cn.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/ant-design-vue@1.7.8/dist/antd.min.js"></script> -->
   <script>
     new Vue({
 		el: '#app',
