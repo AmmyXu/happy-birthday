@@ -41,8 +41,24 @@
         width: 100%;
     }
     .video-wrap {
-        margin-bottom: 32px;
+        width: 100%;
+        margin-bottom: 16px;
         padding: 0 32px;
+    }
+    .poster {
+        position: relative;
+    }
+    .video-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-left: 20px solid #fff;
+        border-bottom: 10px solid transparent;
     }
     .line {
         display: flex;
@@ -57,31 +73,35 @@
         <h2 class="weixin"><span class="icon">☎️</span>微信：uumom888</h2>
     </div>
     <b-tabs expanded multiline size="is-small">
-        <template v-for="each in groupList" :key="each.key" :value="each.key">
-            <b-tab-item :label="each.name">
-                <div class="video-list">
-                    <template v-for="(item, index) in each.value" :key="item.name">
-                        <div class="video-wrap">
-                            <video controls class="video" :poster="item.poster">
-                            <source :src="item.src" type="video/mp4" />
-                            </video>
-                            <div class="video-title">
-                                <p>{{ item.name }}</p>
-                                <b-field grouped group-multiline class="line">
-                                    <div class="control" v-for="price in item.prices">
-                                        <b-taglist attached>
-                                            <b-tag type="is-link">{{price.name}}</b-tag>
-                                            <b-tag type="">💰{{price.price}}</b-tag>
-                                        </b-taglist>
-                                    </div>
-                                </b-field>
+        <b-tab-item v-for="each in groupList" :key="each.key" :value="each.key" :label="each.name">
+            <div class="video-list">
+                <div v-for="(item, index) in each.value" :key="item.name" class="video-wrap">
+                    <div class="poster" @click="visible = true; activeObj=item">
+                        <div class="video-button"></div>
+                        <image :src="item.poster"/>
+                    </div>
+                    <div class="video-title">
+                        <p>{{ item.name }}</p>
+                        <b-field grouped group-multiline class="line">
+                            <div class="control" v-for="price in item.prices">
+                                <b-taglist attached>
+                                    <b-tag type="is-link">{{price.name}}</b-tag>
+                                    <b-tag type="">💰{{price.price}}</b-tag>
+                                </b-taglist>
                             </div>
-                        </div>
-                    </template>
+                        </b-field>
+                    </div>
                 </div>
-            </b-tab-item>
-        </template>
+            </div>
+        </b-tab-item>
     </b-tabs>
+    <b-modal v-model="visible" >
+        <p class="image">
+            <video autoplay controls class="video" :poster="activeObj.poster" @close="visible = false;">
+                <source :src="activeObj.src" type="video/mp4" />
+            </video>
+        </p>
+    </b-modal>
   </div>
   <script src="https://unpkg.com/vue@2"></script>
     <!-- Full bundle -->
@@ -98,12 +118,61 @@
 		data: function() {
 			return {
                 tab: 'all',
+                activeObj: {
+                    src: 'https://yidunfe.nos-jd.163yun.com/928fd0b426a8dcacad248c20ced36c63.mp4',
+                    poster: 'https://yidunfe.nos-jd.163yun.com/928fd0b426a8dcacad248c20ced36c63.mp4?vframe&offset=17&type=jpg',
+                },
+                visible:false,
                 list: [
                     {
                         name: 'JOJO生日祝福视频',
-                        group: ['jojo'],
-                        src: 'https://yidun-video-record.vod.126.net/nt3z35ok7y967iwc2wh69h0h0200a4us.mp4?Signature=ub6wc6UdHqYGkMsaxdOgbbAPpzHTJgyXjOxR3UknDDo%3D&Expires=1704860022&NOSAccessKeyId=f360328f84a645e2926cf3d014bc8d7d',
-                        poster: 'https://yidun-illegal-video.vod.126.net/nt3z35ok7y967iwc2wh69h0h0200a4us_4_20000.jpg?Signature=6Pn0ij3%2Bt7tAPfs4izGWbEQTIDUXuIqNY9lzRLQPz9s%3D&Expires=1704862531&NOSAccessKeyId=23206c563a7147f39f11aedc36e8b708',
+                        group: ['jojo', 'hot'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/928fd0b426a8dcacad248c20ced36c63.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/928fd0b426a8dcacad248c20ced36c63.mp4?vframe&offset=17&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 19.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 14.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '汪汪队生日祝福视频1',
+                        group: ['wangwangdui', 'hot'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/d4c53de150e4dc90a80b8d2f27ed574a.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/d4c53de150e4dc90a80b8d2f27ed574a.mp4?vframe&offset=22&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 19.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '汪汪队生日祝福视频2',
+                        group: ['wangwangdui', 'hot'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/987a97432f9c5c9891d139ecf0070a08.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/987a97432f9c5c9891d139ecf0070a08.mp4?vframe&offset=36&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 19.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 14.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '艾莎公主生日祝福视频1',
+                        group: ['aisha', 'hot'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/7d769003a042591ec46b3da436cd7775.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/7d769003a042591ec46b3da436cd7775.mp4?vframe&offset=6&type=jpg',
                         prices: [
                             {
                                 name: '加照片',
@@ -119,7 +188,7 @@
                         name: '艾莎公主投屏1',
                         group: ['aisha', 'bg'],
                         src: 'https://yidunfe.nos-jd.163yun.com/1212e78fce930f7f515988f2bc8e7bf7.mp4',
-                        poster: 'https://yidunfe.nos-jd.163yun.com/1212e78fce930f7f515988f2bc8e7bf7.mp4?vframe&offset=1&type=jpg',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/1212e78fce930f7f515988f2bc8e7bf7.mp4?vframe&offset=5&type=jpg',
                         prices: [
                             {
                                 name: '加照片',
@@ -275,17 +344,19 @@
                             }
                         ]
                     }
-
-                ]
+                ].map(v => ({
+                    ...v,
+                    key: v.name + v.index
+                }))
             }
         },
         computed: {
             groupList() {
                 return [
                     {
-                        name: '全部',
-                        key: 'all',
-                        value: this.list
+                        name: '🔥热门',
+                        key: 'hot',
+                        value: this.list.filter(item => item.group.includes('hot'))
                     },
                     {
                         name: 'JOJO',
@@ -342,7 +413,11 @@
                         key: 'bg',
                         value: this.list.filter(item => item.group.includes('bg'))
                     },
-
+                    {
+                        name: '全部',
+                        key: 'all',
+                        value: this.list
+                    },
                 ]
             },
         },
