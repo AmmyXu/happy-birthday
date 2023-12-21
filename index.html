@@ -122,7 +122,7 @@
             <b-carousel-item v-for="(carousel, i) in carousels" :key="i">
                 <div class="imgs">
                     <div class="videoWrapper" v-for="videoItem in carousel" :key="videoItem.name" >
-                        <video  :poster="videoItem.poster" autoplay muted class="videoItem">
+                        <video  :poster="videoItem.poster" autoplay muted repeat class="videoItem">
                             <source :src="videoItem.src" type="video/mp4" />
                         </video>
                         <div>{{videoItem.name}}</div>
