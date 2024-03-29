@@ -10,18 +10,14 @@
 		margin: 0;
 		padding: 0;
 	}
-    .app {
-        background: #f6f8fc;
-        min-height: 800px;
-    }
     .page-title {
-        padding-top: 60px;
-        margin-bottom: 8px;
+        margin-top: 24px;
+        margin-bottom: 16px;
         text-align: center;
         color: #141f33;
     }
     .weixin{
-        margin-top: 8px;
+        margin-top: 16px;
         font-size: 16px;
     }   
     .icon {
@@ -29,7 +25,6 @@
     }
     h1 {
         font-size: 28px;
-        font-weight: bolder;
     }
     .video-title {
         font-size: 16px;
@@ -70,99 +65,31 @@
         justify-content: center;
         margin-top: 8px;
     }
-    .pannel {
-        padding: 8px 24px;
-    }
-    .subTitle {
-        font-weight: bold;
-        font-size: 18px;
-        margin-bottom: 16px;
-    }
-    .imgs {
+    .page-main {
         display: flex;
         justify-content: center;
-        flex-wrap: wrap;
-    }
-    .videoWrapper {
-        width: 50%;
-        padding: 0px 8px;
-    }
-    .imgWrapper {
-        width: 50%;
-        padding: 4px 16px;
-    }
-    .videoItem {
-        height: 170px;
-    }
-    .carousel {
-        height: 250px !important;
+        align-items: center;
+        flex-direction: column;
+
+        img {
+            margin-top: 24px;
+            width: 30%;
+        }
     }
 </style>
 <body>
-  <div id="app" class="app">
+  <div id="app">
     <div class="page-title">
-        <h1>柚妈生日视频定制，关注就送🔥</h1>
-        <h2 class="weixin"><span class="icon"></span>❗️评论区排队格式：娃的名字+年龄+模板编号</h2>
-    </div>
-    <div class="pannel">
-        <h3 class="subTitle">现场免费定制（4选1）：可改娃名字、年龄，带生日歌</h3>
-        <div class="imgs">
-            <div v-for="(each, index) in feeList" :key="index" class="imgWrapper">
-                <img :src="each" />
-                <div>模板{{index+1}}</div>
-            </div>
-        </div>
-    </div>
-    <div class="pannel">
-        <h3 class="subTitle">生日视频高级定制，全场85折🔥</h3>
-        <b-carousel
-            :progress="true"
-            :repeat="true"
-            :interval="15000">
-            <b-carousel-item v-for="(carousel, i) in carousels" :key="i">
-                <div class="imgs">
-                    <div class="videoWrapper" v-for="videoItem in carousel" :key="videoItem.name" >
-                        <video  :poster="videoItem.poster" autoplay muted repeat class="videoItem">
-                            <source :src="videoItem.src" type="video/mp4" />
-                        </video>
-                        <div>{{videoItem.name}}</div>
-                    </div>
-                </div>
-            </b-carousel-item>
-        </b-carousel>
+        <h1>拼拼电影票（代理免费入）</h1>
+        <!-- <h2 class="weixin"><span class="icon">☎️</span>微信：uumom888</h2> -->
     </div>
 
+    <div class="page-main">
+        <p>保存图片，微信小程序自助下单，免费入代理，更低价下单🔥</p>
+        <p><a href="https://docs.qq.com/doc/DRFhpU3BGUE5rc2RD">免费电影票代理指南</a></p>
+        <img src="https://yidunfe.nos-jd.163yun.com/6c87610b014675ddd9d0adba6fd91fd2.JPG"/>
+    </div>
 
-    <!-- <b-tabs expanded multiline size="is-small">
-        <b-tab-item v-for="each in groupList" :key="each.key" :value="each.key" :label="each.name">
-            <div class="video-list">
-                <div v-for="(item, index) in each.value" :key="item.name" class="video-wrap">
-                    <div class="poster" @click="visible = true; activeObj=item">
-                        <div class="video-button"></div>
-                        <image :src="item.poster"/>
-                    </div>
-                    <div class="video-title">
-                        <p>{{ item.name }}</p>
-                        <b-field grouped group-multiline class="line">
-                            <div class="control" v-for="price in item.prices">
-                                <b-taglist attached>
-                                    <b-tag type="is-link">{{price.name}}</b-tag>
-                                    <b-tag type="">💰{{price.price}}</b-tag>
-                                </b-taglist>
-                            </div>
-                        </b-field>
-                    </div>
-                </div>
-            </div>
-        </b-tab-item>
-    </b-tabs> -->
-    <!-- <b-modal v-model="visible" >
-        <p class="image">
-            <video autoplay controls class="video" :poster="activeObj.poster" @close="visible = false;">
-                <source :src="activeObj.src" type="video/mp4" />
-            </video>
-        </p>
-    </b-modal> -->
   </div>
   <script src="https://unpkg.com/vue@2"></script>
     <!-- Full bundle -->
@@ -178,47 +105,6 @@
 		el: '#app',
 		data: function() {
 			return {
-                progress: true,
-            progressType: 'is-primary',
-            carousels: [
-                [
-                    {
-                        name: 'JOJO生日祝福视频',
-                        src: 'https://yidunfe.nos-jd.163yun.com/92f5081b74c59ec589fa24a7d5c8ed75.mp4',
-                        poster: 'https://yidunfe.nos-jd.163yun.com/928fd0b426a8dcacad248c20ced36c63.mp4?vframe&offset=5&type=jpg',
-                    },
-                    {
-                        name: '艾莎公主生日祝福',
-                        src: 'https://yidunfe.nos-jd.163yun.com/7d769003a042591ec46b3da436cd7775.mp4',
-                        poster: 'https://yidunfe.nos-jd.163yun.com/7d769003a042591ec46b3da436cd7775.mp4?vframe&offset=6&type=jpg',
-                    },
-                ],
-                [
-                    {
-                        name: '汪汪队模板1',
-                        src: 'https://yidunfe.nos-jd.163yun.com/268f6ffdf728c6feb0d60f6a668b27cc.mp4',
-                        poster: 'https://yidunfe.nos-jd.163yun.com/268f6ffdf728c6feb0d60f6a668b27cc.mp4?vframe&offset=22&type=jpg',
-                    },
-                    {
-                        name: '汪汪队模板2',
-                        src: 'https://yidunfe.nos-jd.163yun.com/987a97432f9c5c9891d139ecf0070a08.mp4',
-                        poster: 'https://yidunfe.nos-jd.163yun.com/987a97432f9c5c9891d139ecf0070a08.mp4?vframe&offset=37&type=jpg',
-                    },
-                ],
-                [
-                    {
-                        name: '奥特曼模板1',
-                        src: 'https://yidunfe.nos-jd.163yun.com/06c9ab3739d7c165b4b5e287d5882a28.mp4',
-                        poster: 'https://yidunfe.nos-jd.163yun.com/06c9ab3739d7c165b4b5e287d5882a28.mp4?vframe&offset=5&type=jpg',
-                    },
-                    {
-                        name: '奥特曼模板2',
-                        src: 'https://yidunfe.nos-jd.163yun.com/537844745a9e3dec821528cb9ce09008.mp4',
-                        poster: 'https://yidunfe.nos-jd.163yun.com/537844745a9e3dec821528cb9ce09008.mp4?vframe&offset=52&type=jpg',
-                    },
-                ],
-
-            ],
                 tab: 'all',
                 activeObj: {
                     src: 'https://yidunfe.nos-jd.163yun.com/928fd0b426a8dcacad248c20ced36c63.mp4',
@@ -234,11 +120,11 @@
                         prices: [
                             {
                                 name: '加照片',
-                                price: 19.9
+                                price: 24.9
                             },
                             {
                                 name: '无照片',
-                                price: 14.9
+                                price: 19.9
                             }
                         ]
                     },
@@ -250,7 +136,7 @@
                         prices: [
                             {
                                 name: '加照片',
-                                price: 19.9
+                                price: 24.9
                             }
                         ]
                     },
@@ -262,11 +148,11 @@
                         prices: [
                             {
                                 name: '加照片',
-                                price: 19.9
+                                price: 24.9
                             },
                             {
                                 name: '无照片',
-                                price: 14.9
+                                price: 19.9
                             }
                         ]
                     },
@@ -278,11 +164,11 @@
                         prices: [
                             {
                                 name: '加照片',
-                                price: 19.9
+                                price: 24.9
                             },
                             {
                                 name: '无照片',
-                                price: 14.9
+                                price: 19.9
                             }
                         ]
                     },
@@ -294,11 +180,11 @@
                         prices: [
                             {
                                 name: '加照片',
-                                price: 19.9
+                                price: 24.9
                             },
                             {
                                 name: '无照片',
-                                price: 14.9
+                                price: 19.9
                             }
                         ]
                     },
@@ -310,11 +196,11 @@
                         prices: [
                             {
                                 name: '加照片',
-                                price: 19.9
+                                price: 24.9
                             },
                             {
                                 name: '无照片',
-                                price: 14.9
+                                price: 19.9
                             }
                         ]
                     },
@@ -326,7 +212,7 @@
                         prices: [
                             {
                                 name: '无照片',
-                                price: 14.9
+                                price: 19.9
                             }
                         ]
                     },
@@ -497,14 +383,6 @@
             }
         },
         computed: {
-            feeList() {
-                return [
-                    'https://yidunfe.nos-jd.163yun.com/813347ff3c08dcccd2c4cf4950cbf076.png?imageView&thumbnail=800x800',
-                    'https://yidunfe.nos-jd.163yun.com/b464a637a3ba00ec0cb893a4af4d48fe.png?imageView&thumbnail=800x800',
-                    'https://yidunfe.nos-jd.163yun.com/6822c1628a4df1f67dac02dec2cd9e8b.png?imageView&thumbnail=800x800',
-                    'https://yidunfe.nos-jd.163yun.com/6c2dc06737e167dfbf6c2d1898f62e00.png?imageView&thumbnail=800x800'
-                ]
-            },
             groupList() {
                 return [
                     {
