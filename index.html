@@ -89,9 +89,14 @@
     <div class="page-main">
         <p>保存图片，微信小程序自助下单，免费入代理，更低价下单🔥</p>
 	<div style="height: 16px"></div>
-        <p><a href="https://docs.qq.com/doc/DRFhpU3BGUE5rc2RD">免费电影票代理指南：https://docs.qq.com/doc/DRFhpU3BGUE5rc2RD</a></p>
+        <p>
+            <a v-if="hit" href="https://docs.qq.com/doc/DRHlKZmxQd3hSckVE" target="_blank">免费电影票代理指南：https://docs.qq.com/doc/DRHlKZmxQd3hSckVE</a>
+            <a v-else target="_blank" href="https://docs.qq.com/doc/DRFhpU3BGUE5rc2RD">免费电影票代理指南：https://docs.qq.com/doc/DRFhpU3BGUE5rc2RD</a>
+        </p>
+
+        <!-- https://docs.qq.com/doc/DRHlKZmxQd3hSckVE -->
 	<div style="height: 16px"></div>
-        <img src="https://yidunfe.nos-jd.163yun.com/6c87610b014675ddd9d0adba6fd91fd2.JPG"/>
+        <img :src="currentImg"/>
     </div>
 
   </div>
@@ -109,6 +114,10 @@
 		el: '#app',
 		data: function() {
 			return {
+                movies: {
+                    dayu: 'https://yidunfe.nos-jd.163yun.com/52836f76f458469aad4bf29b8490a746.jpeg',
+                    test: 'https://yidunfe.nos-jd.163yun.com/9a5b55c68537f3330cba615addfeafdc.png'
+                },
                 tab: 'all',
                 activeObj: {
                     src: 'https://yidunfe.nos-jd.163yun.com/928fd0b426a8dcacad248c20ced36c63.mp4',
@@ -383,7 +392,9 @@
                 ].map(v => ({
                     ...v,
                     key: v.name + v.index
-                }))
+                })),
+                currentImg: '',
+                hit: false
             }
         },
         computed: {
@@ -459,6 +470,14 @@
         },
 		methods: {
             
+        },
+        created() {
+            // 获取参数
+            const params = new URLSearchParams(window.location.search);
+            const paramValue = params.get('from');
+            const path = this.movies[paramValue]
+            this.currentImg = path ?? 'https://yidunfe.nos-jd.163yun.com/6c87610b014675ddd9d0adba6fd91fd2.JPG'
+            this.hit = !!path
         }
     })
 
