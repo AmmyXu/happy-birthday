@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
+  <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css">
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+    .page-title {
+        margin-top: 24px;
+        margin-bottom: 16px;
+        text-align: center;
+        color: #141f33;
+    }
+    .weixin{
+        margin-top: 16px;
+        font-size: 16px;
+    }   
+    .icon {
+        margin-right: 2px;
+    }
+    h1 {
+        font-size: 28px;
+    }
+    .video-title {
+        font-size: 16px;
+        margin-bottom: 16px;
+        text-align: center;
+    }
+    .video-list {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    .video {
+        width: 100%;
+    }
+    .video-wrap {
+        width: 100%;
+        margin-bottom: 16px;
+        padding: 0 32px;
+    }
+    .poster {
+        position: relative;
+    }
+    .video-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-left: 20px solid #fff;
+        border-bottom: 10px solid transparent;
+    }
+    .line {
+        display: flex;
+        justify-content: center;
+        margin-top: 8px;
+    }
+    .page-main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        img {
+            margin-top: 24px;
+            width: 30%;
+        }
+    }
+</style>
+<body>
+  <div id="app">
+    <div class="page-title">
+        <h1>拼拼电影票（代理免费入）</h1>
+        <!-- <h2 class="weixin"><span class="icon">☎️</span>微信：uumom888</h2> -->
+    </div>
+
+    <div class="page-main">
+        <p>保存图片，微信小程序自助下单，免费入代理，更低价下单🔥</p>
+        <p><a href="https://docs.qq.com/doc/DRFhpU3BGUE5rc2RD">免费电影票代理指南</a></p>
+        <img src="https://yidunfe.nos-jd.163yun.com/6c87610b014675ddd9d0adba6fd91fd2.JPG"/>
+    </div>
+
+  </div>
+  <script src="https://unpkg.com/vue@2"></script>
+    <!-- Full bundle -->
+    <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+
+    <!-- Individual components -->
+    <!-- <script src="https://unpkg.com/buefy/dist/components/button"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/locale/zh-cn.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/ant-design-vue@1.7.8/dist/antd.min.js"></script> -->
+  <script>
+    new Vue({
+		el: '#app',
+		data: function() {
+			return {
+                tab: 'all',
+                activeObj: {
+                    src: 'https://yidunfe.nos-jd.163yun.com/928fd0b426a8dcacad248c20ced36c63.mp4',
+                    poster: 'https://yidunfe.nos-jd.163yun.com/928fd0b426a8dcacad248c20ced36c63.mp4?vframe&offset=17&type=jpg',
+                },
+                visible:false,
+                list: [
+                    {
+                        name: 'JOJO生日祝福视频',
+                        group: ['jojo', 'hot'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/928fd0b426a8dcacad248c20ced36c63.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/928fd0b426a8dcacad248c20ced36c63.mp4?vframe&offset=17&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 24.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 19.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '汪汪队生日祝福视频1',
+                        group: ['wangwangdui', 'hot'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/268f6ffdf728c6feb0d60f6a668b27cc.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/268f6ffdf728c6feb0d60f6a668b27cc.mp4?vframe&offset=22&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 24.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '汪汪队生日祝福视频2',
+                        group: ['wangwangdui', 'hot'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/987a97432f9c5c9891d139ecf0070a08.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/987a97432f9c5c9891d139ecf0070a08.mp4?vframe&offset=37&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 24.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 19.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '艾莎公主生日祝福视频1',
+                        group: ['aisha', 'hot'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/7d769003a042591ec46b3da436cd7775.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/7d769003a042591ec46b3da436cd7775.mp4?vframe&offset=6&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 24.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 19.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '熊大熊二祝福视频',
+                        group: ['xiongda'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/7c925601770e2a58c0557d11cbf4bc8c.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/7c925601770e2a58c0557d11cbf4bc8c.mp4?vframe&offset=2&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 24.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 19.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '奥特曼生日祝福视频1',
+                        group: ['aoteman', 'hot'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/06c9ab3739d7c165b4b5e287d5882a28.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/06c9ab3739d7c165b4b5e287d5882a28.mp4?vframe&offset=5&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 24.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 19.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '奥特曼生日祝福视频2',
+                        group: ['aoteman', 'hot'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/537844745a9e3dec821528cb9ce09008.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/537844745a9e3dec821528cb9ce09008.mp4?vframe&offset=52&type=jpg',
+                        prices: [
+                            {
+                                name: '无照片',
+                                price: 19.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '艾莎公主投屏1',
+                        group: ['aisha', 'bg'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/1212e78fce930f7f515988f2bc8e7bf7.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/1212e78fce930f7f515988f2bc8e7bf7.mp4?vframe&offset=5&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 7.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 4.9
+                            }
+                        ]
+                    },
+                    {
+                        name: 'JOJO投屏',
+                        group: ['jojo', 'bg'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/6994c8f7ca89ad1787dd25a04137f1f4.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/6994c8f7ca89ad1787dd25a04137f1f4.mp4?vframe&offset=1&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 7.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 4.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '草莓熊投屏',
+                        group: ['caomeixiong', 'bg'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/4dc6448bd52c5bbd6d460597f1ae0d44.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/4dc6448bd52c5bbd6d460597f1ae0d44.mp4?vframe&offset=1&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 7.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 4.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '星黛露投屏',
+                        group: ['xingdailu', 'bg'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/f122ac43b5b02cb70c6239277df8d3f2.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/f122ac43b5b02cb70c6239277df8d3f2.mp4?vframe&offset=1&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 7.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 4.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '周岁投屏',
+                        group: ['one', 'bg'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/9f1d12e5a77fe23bcc5bc2dd809bd75a.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/9f1d12e5a77fe23bcc5bc2dd809bd75a.mp4?vframe&offset=1&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 7.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 4.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '汪汪队投屏1',
+                        group: ['wangwangdui', 'bg'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/bd20814b419a4ca386367692d4c6aced.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/bd20814b419a4ca386367692d4c6aced.mp4?vframe&offset=1&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 7.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 4.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '汪汪队投屏2',
+                        group: ['wangwangdui', 'bg'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/bf613f8ac1b7487e7b95c199e44ffab9.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/bf613f8ac1b7487e7b95c199e44ffab9.mp4?vframe&offset=1&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 7.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 4.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '小猪佩奇投屏',
+                        group: ['peiqi', 'bg'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/d20cdf37d7d6888632f1755dc5e02a6e.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/d20cdf37d7d6888632f1755dc5e02a6e.mp4?vframe&offset=1&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 7.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 4.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '工程车投屏1',
+                        group: ['gongchengche', 'bg'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/d91d09e15f95471409d1b612e45caa01.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/d91d09e15f95471409d1b612e45caa01.mp4?vframe&offset=1&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 7.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 4.9
+                            }
+                        ]
+                    },
+                    {
+                        name: '奥特曼投屏1',
+                        group: ['aoteman', 'bg'],
+                        src: 'https://yidunfe.nos-jd.163yun.com/ab358fdb232603a5b8f856968c987e3e.mp4',
+                        poster: 'https://yidunfe.nos-jd.163yun.com/ab358fdb232603a5b8f856968c987e3e.mp4?vframe&offset=1&type=jpg',
+                        prices: [
+                            {
+                                name: '加照片',
+                                price: 7.9
+                            },
+                            {
+                                name: '无照片',
+                                price: 4.9
+                            }
+                        ]
+                    }
+                ].map(v => ({
+                    ...v,
+                    key: v.name + v.index
+                }))
+            }
+        },
+        computed: {
+            groupList() {
+                return [
+                    {
+                        name: '🔥爆款',
+                        key: 'hot',
+                        value: this.list.filter(item => item.group.includes('hot'))
+                    },
+                    {
+                        name: 'JOJO',
+                        key: 'jojo',
+                        value: this.list.filter(item => item.group.includes('jojo'))
+                    },
+                    {
+                        name: '汪汪队',
+                        key: 'wangwangdui',
+                        value: this.list.filter(item => item.group.includes('wangwangdui'))
+                    },
+                    {
+                        name: '奥特曼',
+                        key: 'aoteman',
+                        value: this.list.filter(item => item.group.includes('aoteman'))
+                    },
+                    {
+                        name: '艾莎公主',
+                        key: 'aisha',
+                        value: this.list.filter(item => item.group.includes('aisha'))
+                    },
+                    {
+                        name: '小猪佩奇',
+                        key: 'peiqi',
+                        value: this.list.filter(item => item.group.includes('peiqi'))
+                    },
+                    {
+                        name: '熊大熊二',
+                        key: 'xiongda',
+                        value: this.list.filter(item => item.group.includes('xiongda'))
+                    },
+                    {
+                        name: '草莓熊',
+                        key: 'caomeixiong',
+                        value: this.list.filter(item => item.group.includes('caomeixiong'))
+                    },
+                    {
+                        name: '星黛露',
+                        key: 'xingdailu',
+                        value: this.list.filter(item => item.group.includes('xingdailu'))
+                    },
+                    {
+                        name: '工程车',
+                        key: 'gongchengche',
+                        value: this.list.filter(item => item.group.includes('gongchengche'))
+                    },
+                    {
+                        name: '周岁',
+                        key: 'one',
+                        value: this.list.filter(item => item.group.includes('one'))
+                    },
+                    {
+                        name: '背景投屏',
+                        key: 'bg',
+                        value: this.list.filter(item => item.group.includes('bg'))
+                    },
+                    {
+                        name: '全部',
+                        key: 'all',
+                        value: this.list
+                    },
+                ]
+            },
+        },
+		methods: {
+            
+        }
+    })
+
+    // 禁止缩放
+    document.documentElement.addEventListener(
+        "touchstart",
+        function(event) {
+          if (event.touches.length > 1) {
+            event.preventDefault();
+          }
+        },
+        false
+      );
+
+      var lastTouchEnd = 0;
+      document.documentElement.addEventListener(
+        "touchend",
+        function(event) {
+          var now = Date.now();
+          if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+          }
+          lastTouchEnd = now;
+        },
+        false
+      );
+
+      document.addEventListener("gesturestart", function(event) {
+        event.preventDefault();
+      });
+  </script>
+</body>
+</html>
